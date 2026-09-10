@@ -1,4 +1,4 @@
-# Almasix editors
+# Almasix IDE support
 
 Editor packages for [Almasix](https://github.com/almasix-dev/almasix):
 
@@ -17,14 +17,14 @@ in the application venv. This repo only ships the editor shells.
 
 1. Install **Almasix** from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=almasix.almasix)
    (publisher `almasix`), **or** download a `.vsix` from
-   [Releases](https://github.com/almasix-dev/editors/releases) and **Install from VSIX…**.
+   [Releases](https://github.com/almasix-dev/ide-support/releases) and **Install from VSIX…**.
 2. In an Almasix app: `pip install 'almasix[lsp]'` and optionally `smith ide:install`.
 
 ### JetBrains (PyCharm / IntelliJ)
 
 1. Install **Almasix** from the JetBrains Marketplace (plugin id `com.almasix.ide`),
    **or** **Settings → Plugins → ⚙ → Install Plugin from Disk…** with a zip from
-   [Releases](https://github.com/almasix-dev/editors/releases).
+   [Releases](https://github.com/almasix-dev/ide-support/releases).
 2. Restart the IDE; ensure LSP4IJ can start `almasix-lsp` from the project venv.
 
 ## Develop
