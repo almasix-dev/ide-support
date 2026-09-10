@@ -1,0 +1,20 @@
+# VS Code
+vscode/node_modules/
+vscode/out/
+vscode/*.vsix
+vscode/.vscode-test/
+vscode/*.tsbuildinfo
+
+# JetBrains
+jetbrains/.gradle/
+jetbrains/build/
+jetbrains/out/
+jetbrains/.intellijPlatform/
+jetbrains/*.iml
+jetbrains/.idea/
+**/*.class
+
+# OS / editor
+.DS_Store
+*.swp
+*~
