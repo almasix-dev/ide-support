@@ -159,6 +159,8 @@ kover {
                     "com.almasix.ide.AlmasixMakeAction*",
                     "com.almasix.ide.AlmasixMakeActionGroup",
                     "com.almasix.ide.AlmasixMakeActionGroup*",
+                    "com.almasix.ide.AlmasixModelMakeDialog",
+                    "com.almasix.ide.AlmasixModelMakeDialog*",
                     "com.almasix.ide.AlmasixToolWindowFactory",
                     "com.almasix.ide.AlmasixToolWindowFactory*",
                     "com.almasix.ide.AlmasixToolWindowPanel",
