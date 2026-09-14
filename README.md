@@ -4,12 +4,14 @@ Editor packages for [Almasix](https://github.com/almasix-dev/almasix):
 
 | Path | Package |
 | --- | --- |
-| [`vscode/`](vscode/) | VS Code / Cursor / VSCodium extension |
-| [`jetbrains/`](jetbrains/) | PyCharm / IntelliJ plugin |
+| [`vscode/`](vscode/) | VS Code / Cursor / VSCodium extension (`almasix-lsp`) |
+| [`jetbrains/`](jetbrains/) | PyCharm / IntelliJ **Almasix Idea** (native index) |
 | [`prism/`](prism/) | Shared TextMate grammar, language config, snippets |
 
-Language intelligence comes from **`almasix-lsp`** (`pip install 'almasix[lsp]'`)
-in the application venv. This repo only ships the editor shells.
+- **VS Code family:** language intelligence from **`almasix-lsp`**
+  (`pip install 'almasix[lsp]'`).
+- **JetBrains 0.2.0+:** native completions via `smith ide:index --json`
+  (no LSP4IJ).
 
 ## Install
 
@@ -24,8 +26,9 @@ in the application venv. This repo only ships the editor shells.
 
 1. Install **Almasix** from the JetBrains Marketplace (plugin id `com.almasix.ide`),
    **or** **Settings → Plugins → ⚙ → Install Plugin from Disk…** with a zip from
-   [Releases](https://github.com/almasix-dev/ide-support/releases).
-2. Restart the IDE; ensure LSP4IJ can start `almasix-lsp` from the project venv.
+   [Releases](https://github.com/almasix-dev/ide-support/releases) (**0.2.0+**).
+2. Restart; open an app with Almasix on the project interpreter
+   (`smith ide:index --json` must work). Use **Almasix → Rebuild Index** to refresh.
 
 ## Develop
 
@@ -58,10 +61,3 @@ them to the Release, then publishes to:
 
 Publisher accounts must already exist and match the package ids above. Do not
 commit tokens.
-
-You can rehearse with **Actions → Publish → Run workflow** (`dry_run: true`) to
-build and upload artifacts without marketplace publish.
-
-## License
-
-[MIT](LICENSE)
