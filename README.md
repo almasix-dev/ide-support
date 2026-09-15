@@ -1,63 +1,27 @@
-# Almasix IDE support
+# Almasix IDE support (moved)
 
-Editor packages for [Almasix](https://github.com/almasix-dev/almasix):
+This monorepo has been **split**. Develop and release from the dedicated repos:
 
-| Path | Package |
-| --- | --- |
-| [`vscode/`](vscode/) | VS Code / Cursor / VSCodium extension (`almasix-lsp`) |
-| [`jetbrains/`](jetbrains/) | PyCharm / IntelliJ **Almasix Idea** (native index) |
-| [`prism/`](prism/) | Shared TextMate grammar, language config, snippets |
+| Editor | Repository | Marketplace |
+| --- | --- | --- |
+| **VS Code / Cursor / VSCodium** | [`almasix-dev/almasix-vscode`](https://github.com/almasix-dev/almasix-vscode) | [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=almasix.almasix) |
+| **PyCharm / WebStorm (Almasix Idea)** | [`almasix-dev/almasix-idea`](https://github.com/almasix-dev/almasix-idea) | JetBrains Marketplace (`com.almasix.ide`) |
 
-- **VS Code family:** language intelligence from **`almasix-lsp`**
-  (`pip install 'almasix[lsp]'`).
-- **JetBrains 0.2.0+:** native completions via `smith ide:index --json`
-  (no LSP4IJ).
+Prism TextMate assets ship inside [`almasix-vscode`](https://github.com/almasix-dev/almasix-vscode/tree/main/prism)
+(`prism/`). JetBrains uses a native Prism language implementation in
+[`almasix-idea`](https://github.com/almasix-dev/almasix-idea).
 
-## Install
+## Why
 
-### VS Code / Cursor / VSCodium
+The VS Code extension and JetBrains plugin share the same *index contract*
+(`smith ide:index --json`) but have independent packaging, CI, and release
+cadences. Keeping them in one repo coupled Marketplace publishes and slowed
+each side down.
 
-1. Install **Almasix** from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=almasix.almasix)
-   (publisher `almasix`), **or** download a `.vsix` from
-   [Releases](https://github.com/almasix-dev/ide-support/releases) and **Install from VSIX…**.
-2. In an Almasix app: `pip install 'almasix[lsp]'` and optionally `smith ide:install`.
+## History
 
-### JetBrains (PyCharm / IntelliJ)
+Git history for each package was preserved with `git filter-repo` when the
+split landed. Older monorepo commits remain here for archaeology; **do not
+cut new releases from this repository**.
 
-1. Install **Almasix** from the JetBrains Marketplace (plugin id `com.almasix.ide`),
-   **or** **Settings → Plugins → ⚙ → Install Plugin from Disk…** with a zip from
-   [Releases](https://github.com/almasix-dev/ide-support/releases) (**0.2.0+**).
-2. Restart; open an app with Almasix on the project interpreter
-   (`smith ide:index --json` must work). Use **Almasix → Rebuild Index** to refresh.
-
-## Develop
-
-```bash
-# VS Code
-cd vscode && npm install && npm run package
-
-# JetBrains (JDK 17+)
-cd jetbrains && ./gradlew test buildPlugin
-```
-
-Prism assets live under `prism/`. The VS Code package syncs them via
-`npm run sync-prism` before packaging.
-
-## Release / publish
-
-Cutting a release: create a GitHub Release on a `vX.Y.Z` tag. The
-[publish workflow](.github/workflows/publish.yml) builds both artifacts, attaches
-them to the Release, then publishes to:
-
-- **Visual Studio Marketplace** (`vsce publish`)
-- **JetBrains Marketplace** (`./gradlew publishPlugin`)
-
-### Secrets (org / repo Settings → Secrets)
-
-| Secret | Used for |
-| --- | --- |
-| `VSCE_PAT` | Azure DevOps PAT with **Marketplace (Publish)** for publisher `almasix` |
-| `JETBRAINS_PUBLISH_TOKEN` | JetBrains Marketplace token for plugin `com.almasix.ide` |
-
-Publisher accounts must already exist and match the package ids above. Do not
-commit tokens.
+Framework docs: [Editor setup](https://almasix-dev.github.io/almasix/editor-setup/).
