@@ -9,42 +9,14 @@ permissions:
   contents: read
 
 jobs:
-  vscode:
+  redirect:
     name: Package VS Code VSIX
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: npm
-          cache-dependency-path: vscode/package-lock.json
-      - name: Package extension
-        working-directory: vscode
-        run: |
-          npm ci
-          npm run package
-      - uses: actions/upload-artifact@v4
-        with:
-          name: almasix-vscode-vsix
-          path: vscode/*.vsix
+      - run: echo "ide-support is a redirect — packages live in almasix-vscode / almasix-idea"
 
   jetbrains:
     name: Package JetBrains plugin
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: "17"
-      - name: Platform tests
-        working-directory: jetbrains
-        run: ./gradlew test --no-daemon
-      - name: buildPlugin
-        working-directory: jetbrains
-        run: ./gradlew buildPlugin --no-daemon
-      - uses: actions/upload-artifact@v4
-        with:
-          name: almasix-jetbrains-zip
-          path: jetbrains/build/distributions/*.zip
+      - run: echo "ide-support is a redirect — packages live in almasix-vscode / almasix-idea"
